@@ -1,1 +1,1 @@
-python class
+my python class
