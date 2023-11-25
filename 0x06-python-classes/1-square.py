@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+''' Define Empty Class'''
+
+
 class Square:
     """my square class.
     Atrributes:

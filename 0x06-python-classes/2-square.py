@@ -1,11 +1,14 @@
 #!/usr/bin/python3
+''' Define square Class'''
+
+
 class Square:
     """my square class.
     Atrributes:
     __size(int): size of the square
     """
     def __init__(self, size=0):
-        """ initialization method 
+        """ initialization method
         args:
             size (int): size of the square
         """
