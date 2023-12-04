@@ -1,7 +1,14 @@
 #!/usr/bin/python3
-Square = __import__('11-square').Square
+lookup = __import__('0-lookup').lookup
 
-s = Square(13)
+class MyClass1(object):
+    pass
 
-print(s)
-print(s.area())
+class MyClass2(object):
+    my_attr1 = 3
+    def my_meth(self):
+        pass
+
+print(lookup(MyClass1))
+print(lookup(MyClass2))
+print(lookup(int))
