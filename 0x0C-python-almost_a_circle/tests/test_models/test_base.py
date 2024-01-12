@@ -1,8 +1,6 @@
-
-
-
 from models.base import Base
 import unittest
+
 
 class TestBase(unittest.TestCase):
     def test_id(self):
@@ -14,6 +12,7 @@ class TestBase(unittest.TestCase):
         self.assertEqual(b3.id, 12)
         b4 = Base()
         self.assertEqual(b4.id, 3)
+
 
 if __name__ == '__main__':
     unittest.main()
