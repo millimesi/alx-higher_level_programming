@@ -4,7 +4,7 @@ ORM class -state
 '''
 from sqlalchemy import Column, Integer, String, ForeignKey
 from model_state import Base
-
+from model_state import State
 
 class City(Base):
     '''Cities class to the table'''
