@@ -22,7 +22,7 @@ if __name__ == "__main__":
         port=port
     )
     cur = connection.cursor()
-    sql_query = ("SELECT * FROM states WHERE name = '{}' "
+    sql_query = ("SELECT * FROM states WHERE name LIKE BINARY '{}' "
                  "ORDER BY id ASC".format(state_name))
     cur.execute(sql_query)
     rows = cur.fetchall()
