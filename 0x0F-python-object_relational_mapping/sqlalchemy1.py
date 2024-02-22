@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import sqlalchemy
-#connecting 
+#connecting with the database
 from sqlalchemy import create_engine
 engine = create_engine('sqlite:///:memory:', echo=True)
 #declare Mapping
@@ -18,7 +18,9 @@ class User(Base):
                             self.name, self.fullname, self.nickname)
 print(repr(User.__table__))
 
-#to check for the presence of the User table and create tables
+#create database tables defined by the models (classes) 
+#mapped to SQLAlchemy's declarative base Base, 
+#and it creates them in the specified database engine engine.
 print(Base.metadata.create_all(engine))
 
 #creating end user
@@ -75,5 +77,8 @@ for name, fullname in session.query(User.name, User.fullname):
 
 for row in session.query(User, User.name).all():
     print(row.User, row.name)
+
+#deleting a object/row
+session.delete(ed_user)
 
 session.close()
