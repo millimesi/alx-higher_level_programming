@@ -21,7 +21,10 @@ if __name__ == "__main__":
         port=port
     )
     cur = connection.cursor()
-    sql_query = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
+    sql_query = "SELECT *\
+                FROM states\
+                WHERE name LIKE BINARY 'N%'\
+                ORDER BY states.id ASC"
     cur.execute(sql_query)
     rows = cur.fetchall()
     for row in rows:
