@@ -4,23 +4,17 @@ python networking 1
 '''
 
 
+import requests
+import sys
+
 if __name__ == "__main__":
-    import requests
-    import sys
+    repo_name = sys.argv[1]
+    owner_name = sys.argv[2]
+    url = f"https://api.github.com/repos/{owner_name}/{repo_name}/commits"
 
-    owner = sys.argv[1]
-    repo = sys.argv[2]
-    req = requests.get(
-        'https://api.github.com/repos/{}/{}/commits'.format(owner, repo))
-
-    try:
-        json_data = req.json()
-        if json_data:
-            for commits in json_data[:10]:
-                sha = commits.get('sha')
-                author_name = commits['commit']['author'].get('name')
-                print(f"{sha}: {author_name}")
-        else:
-            print("No result")
-    except ValueError:
-        print("Not a valid JSON")
+    r = requests.get(url)
+    data = r.json()
+    for commit in data[:10]:
+        sha = commit.get('sha', 'None')
+        author_name = commit['commit']['author'].get('name', 'None')
+        print(f"{sha}: {author_name}")
