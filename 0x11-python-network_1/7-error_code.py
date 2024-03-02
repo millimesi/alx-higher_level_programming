@@ -8,8 +8,8 @@ if __name__ == "__main__":
     import requests
     import sys
 
-    try:
-        req = requests.post(sys.argv[1])
+    req = requests.post(sys.argv[1])
+    if req.status_code <= 400:
         print(req.text)
-    except requests.RequestException as e:
-        print("Error code: {}".format(e.status_code))
+    else:
+        print("Error code: {}".format(req.status_code))
