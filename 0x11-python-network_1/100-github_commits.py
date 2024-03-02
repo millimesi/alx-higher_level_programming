@@ -10,17 +10,10 @@ if __name__ == "__main__":
 
     owner = sys.argv[1]
     repo = sys.argv[2]
-    req = requests.get(
-        'https://api.github.com/repos/{}/{}/commits'.format(owner, repo))
-
-    try:
-        json_data = req.json()
-        if json_data:
-            for commits in json_data[:10]:
-                sha = commits.get('sha')
-                author_name = commits['commit']['author'].get('name')
-                print(f"{sha}: {author_name}")
-        else:
-            print("No result")
-    except ValueError:
-        print("Not a valid JSON")
+    url = 'https://api.github.com/repos/{}/{}/commits'.format(owner, repo)
+    req = requests.get(url)
+    json_data = req.json()
+    for commits in json_data[:10]:
+        sha = commits.get('sha')
+        author_name = commits['commit']['author'].get('name')
+        print(f"{sha}: {author_name}")
