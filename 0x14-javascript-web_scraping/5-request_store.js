@@ -1,20 +1,18 @@
 #!/usr/bin/node
 const request = require('request');
 const fs = require('fs');
-const filepath = process.argv[3];
+const filePath = process.argv[3];
 const url = process.argv[2];
 
-request(url, (error, response, body) => {
+request(url, function (error, response, body) {
   if (error) {
-    console.error('error:', error);
-  }
-  if (response.statusCode !== 200) {
-    console.error(`Failed to fetch: ${response.statusCode}`);
-  }
-  if (body) {
-    fs.writeFile(filepath, body, 'utf8', (err) => {
+    console.log(error);
+  } else if (response.statusCode !== 200) {
+    console.error('Status Code:', response.statusCode);
+  } else {
+    fs.writeFile(filePath, body, { encoding: 'utf-8' }, function (err) {
       if (err) {
-        console.error(err);
+        console.error('Error writing to file:', err);
       }
     });
   }
